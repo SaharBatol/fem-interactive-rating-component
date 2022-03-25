@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Ratings from "./components/Ratings";
+import Confirmation from "./components/Confirmation";
+import { useState } from "react";
 
 function App() {
+  const [rating, setRating] = useState(0);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Routes>
+          <Route
+            path="/"
+            element={<Ratings setRating={setRating} rating={rating} />}
+          />
+          <Route
+            path="/confirmation"
+            element={<Confirmation rating={rating} />}
+          />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
